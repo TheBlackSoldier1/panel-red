@@ -1,0 +1,70 @@
+/* Define la apariencia general de la página. */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    margin: 0;
+    padding: 32px;
+}
+
+/* Destaca el título principal. */
+h1 {
+    color: #38bdf8;
+}
+
+/* Da un color más suave a la descripción. */
+p {
+    color: #94a3b8;
+}
+
+/* Organiza las direcciones en columnas que se adaptan al espacio. */
+.cuadricula {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+/* Da forma y color a cada casilla de dirección IP. */
+.direccion {
+    background-color: #1e293b;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Verde cuando la IP responde. */
+.direccion.responde {
+    border-color: #4ade80;
+    background-color: #143327;
+}
+
+/* Gris cuando no recibimos respuesta. */
+.direccion.sin-respuesta {
+    border-color: #94a3b8;
+    background-color: #263244;
+}
+
+/* Amarillo cuando ocurre un error al comprobar. */
+.direccion.error {
+    border-color: #facc15;
+    background-color: #3b3218;
+}
+
+/* Da apariencia al botón y lo separa de las casillas. */
+.boton-comprobar {
+    background-color: #38bdf8;
+    color: #0f172a;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Cambia el fondo cuando el puntero pasa sobre el botón. */
+.boton-comprobar:hover {
+    background-color: #7dd3fc;
+}
