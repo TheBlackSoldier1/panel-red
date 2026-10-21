@@ -1,0 +1,48 @@
+@startuml
+title Panel de red - actividad de una petición actual
+start
+:Leer inicio y fin;
+:Aplicar valores predeterminados si no existen;
+:Validar presencia, enteros, límites y orden;
+if (¿Fallan las reglas?) then (sí)
+  :Guardar errores y entradas;
+  :Redirigir a GET /;
+  note right
+    La nueva petición usa 129-134.
+    Comportamiento actual pendiente de mejorar.
+  end note
+  stop
+else (no)
+  :Obtener datos validados y convertir a enteros;
+endif
+:Calcular fin - inicio + 1;
+if (¿Supera seis direcciones?) then (sí)
+  :Guardar error y entradas;
+  :Redirigir a GET /;
+  stop
+else (no)
+  :Generar lista con el prefijo configurado;
+endif
+while (¿Quedan IPs?) is (sí)
+  :Ejecutar ping con límite de cinco segundos;
+  if (¿Se produjo una excepción?) then (sí)
+    :Registrar excepción;
+    :Guardar estado Error al comprobar;
+  else (no)
+    :Convertir salida CP850 a UTF-8;
+    if (¿Hay texto en salida de errores?) then (sí)
+      :Guardar Error al comprobar y detalle;
+    else (no)
+      if (¿La salida contiene TTL=?) then (sí)
+        :Guardar Responde y detalle;
+      else (no)
+        :Guardar Sin respuesta y detalle;
+      endif
+    endif
+  endif
+endwhile (no)
+:Contar estados sin repetir pings;
+:Enviar resultados a la vista;
+:Mostrar HTML con resumen y casillas;
+stop
+@enduml

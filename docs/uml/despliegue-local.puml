@@ -1,0 +1,33 @@
+@startuml
+title Panel de red - despliegue local de desarrollo
+node "PC del operador - Windows" {
+  node "Navegador" as Navegador
+  node "Servidor PHP / Laravel\n127.0.0.1:8000" as Laravel {
+    artifact "routes/web.php" as Rutas
+    artifact "RedController.php" as Red
+    artifact "dashboard.blade.php" as Vista
+    artifact "Dispositivo.php\npreparado" as Modelo
+  }
+  node "Sistema operativo" {
+    artifact "ping.exe" as Ping
+  }
+  database "database/database.sqlite" as SQLite
+}
+node "Equipo destino\nPC propia u otro equipo autorizado" as Equipo
+cloud "GitHub\nrepositorio de código y documentación" as GitHub
+Navegador --> Laravel : HTTP local
+Red --> Ping : ejecutar proceso
+Ping --> Equipo : ICMP echo
+Equipo --> Ping : respuesta si está disponible
+Laravel --> SQLite : sesiones y caché
+Modelo ..> SQLite : persistencia preparada
+Laravel ..> GitHub : respaldo con Git por el desarrollador
+note bottom of Modelo
+La migración crea dispositivos.
+El dashboard aún no registra ni consulta equipos guardados.
+end note
+note bottom of GitHub
+No hospeda la ejecución de este dashboard.
+La base de datos local no se incluye en Git.
+end note
+@enduml

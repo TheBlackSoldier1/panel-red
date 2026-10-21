@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+title Panel de red - casos de uso actuales y futuros
+actor "Operador local" as Operador
+rectangle "Panel de red local" {
+  usecase "CU-01\nComprobar rango" as Rango
+  usecase "Validar extremos\ny máximo de seis IPs" as Validar
+  usecase "Ejecutar ping\npor cada dirección" as Ping
+  usecase "CU-02\nConsultar resumen" as Resumen
+  usecase "CU-03\nConsultar detalle" as Detalle
+  usecase "CU-04\nRegistrar dispositivo\n<<futuro>>" as Registrar
+  usecase "CU-05\nConsultar y comprobar\ndispositivo guardado\n<<futuro>>" as Guardado
+}
+Operador --> Rango
+Operador --> Resumen
+Operador --> Detalle
+Operador --> Registrar
+Operador --> Guardado
+Rango ..> Validar : <<include>>
+Rango ..> Ping : <<include>>
+note bottom of Registrar
+Modelo y tabla preparados.
+Formulario y acción de registro pendientes.
+end note
+note bottom of Detalle
+Abrir el detalle no ejecuta un ping nuevo.
+end note
+@enduml

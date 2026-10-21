@@ -68,3 +68,29 @@ p {
 .boton-comprobar:hover {
     background-color: #7dd3fc;
 }
+/* Permite que las casillas se ajusten al ancho de su columna. */
+.direccion {
+    min-width: 0;
+}
+
+/* Alinea el detalle para facilitar su lectura. */
+.direccion details {
+    margin-top: 12px;
+    text-align: left;
+}
+
+/* Indica que el título del desplegable se puede pulsar. */
+.direccion summary {
+    cursor: pointer;
+}
+
+/* Conserva los saltos de línea y ajusta las líneas largas. */
+.direccion pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    background-color: #0f172a;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+}
