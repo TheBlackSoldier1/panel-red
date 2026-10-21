@@ -67,7 +67,7 @@ sequenceDiagram
     Vista-->>Navegador: HTML con formulario y casillas
     Navegador-->>Operador: Mostrar resultados
     Operador->>Navegador: Abrir Ver detalle del ping
-    Note over Navegador: Se despliega el texto recibido; no se envia otra peticion.
+    Note over Navegador: Se despliega el texto recibido sin enviar otra peticion.
 ```
 
 La captura de excepciones ocurre en `comprobarIp()`. Para abreviar, el recorrido muestra una respuesta general del proceso; los errores se convierten en un resultado con estado «Error al comprobar».
